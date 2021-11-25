@@ -1,4 +1,1 @@
-
-console.log("hello Tolik");
-
-alert("Hello Tolik");
+const classBlock = document.querySelector(".class");
