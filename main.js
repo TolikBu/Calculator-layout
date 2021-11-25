@@ -1,10 +1,10 @@
-const title = "изменил значение для урока lesson03";
-const screens = "снимок";
-const screenPrice = "цены";
-const rollback = "возврат";
-const fullPrice = "сумма";
-const adaptive = "личная настройка";
+let title;
+let screens;
+let screenPrice; 
+let rollback;
+let fullPrice;
+let adaptive;
 
-const logged = () => {
-  console.log("научился рабоать с Git через  терминал bush");
-};
+console.log("Hello Tolik");
+
+alert("закройте данное окно");
