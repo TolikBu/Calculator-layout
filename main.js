@@ -1,4 +1,4 @@
-
+const title = "изменил значение для урока lesson03";
 const screens = "снимок";
 const screenPrice = "цены";
 const rollback = "возврат";
