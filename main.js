@@ -1,8 +1,14 @@
-'use strict';
+"use strict";
 
 const title = prompt("Как называется ваш проект?");
-const screens = prompt("Какие типы экранов нужно разработать?", 'пример:"Простые, Сложные, Интерактивные"');
-const screenPrice = +prompt("Сколько будет стоить данная работа?", "пример: 12000");
+const screens = prompt(
+  "Какие типы экранов нужно разработать?",
+  'пример:"Простые, Сложные, Интерактивные"'
+);
+const screenPrice = +prompt(
+  "Сколько будет стоить данная работа?",
+  "пример: 12000"
+);
 const adaptive = confirm("Нужен ли адаптив на сайте?");
 const service1 = prompt("Какой дополнительный тип услуги нужен?");
 const servicePrice1 = +prompt("Сколько это будет стоить?");
@@ -10,7 +16,8 @@ const service2 = prompt("Какой дополнительный тип услу
 const servicePrice2 = +prompt("Сколько это будет стоить?");
 
 let fullPrice = screenPrice + servicePrice1 + servicePrice2;
-let servicePercentPrice = fullPrice - (fullPrice * 0.15);
+let servicePercentPrice = fullPrice - fullPrice * 0.15;
+
 
 console.log(title);
 console.log(screens);
@@ -28,13 +35,12 @@ switch (true) {
   case fullPrice >= 30000:
     console.log("Даем скидку в 10%");
     break;
-  case (fullPrice <= 29999, fullPrice >= 15000):
+  case fullPrice <= 29999 && fullPrice >= 15000:
     console.log("Даем скидку в 5%");
     break;
-  case (fullPrice <= 14999, fullPrice >= 0):
+  case fullPrice <= 14999 && fullPrice >= 0:
     console.log("Скидка не предусмотрена");
     break;
   default:
     console.log("Что-то пошло не так!");
-}
-
+};
