@@ -1,47 +1,58 @@
 "use strict";
 
 const title = prompt("Как называется ваш проект?");
-const screens = prompt(
-  "Какие типы экранов нужно разработать?",
-  'пример:"Простые, Сложные, Интерактивные"'
-);
-const screenPrice = +prompt(
-  "Сколько будет стоить данная работа?",
-  "пример: 12000"
-);
+const screens = prompt("Какие типы экранов нужно разработать?", 'пример:"Простые, Сложные, Интерактивные"');
+const screenPrice = +prompt("Сколько будет стоить данная работа?", "пример: 12000");
 const adaptive = confirm("Нужен ли адаптив на сайте?");
 const service1 = prompt("Какой дополнительный тип услуги нужен?");
 const servicePrice1 = +prompt("Сколько это будет стоить?");
 const service2 = prompt("Какой дополнительный тип услуги нужен?");
 const servicePrice2 = +prompt("Сколько это будет стоить?");
 const rollBack = 10;
-const fullPrice = screenPrice + servicePrice1 + servicePrice2;
-const servicePercentPrice = fullPrice - (fullPrice * (rollBack / 100));
+let allServicePrices;
 
-const showTypeOf = 
+const getAllServicePrices = function (a, b) {
+  return a + b;
+};
+allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
 
-switch (true) {
-  case fullPrice >= 30000:
-    console.log("Даем скидку в 10%");
-    break;
-  case fullPrice <= 29999 && fullPrice >= 15000:
-    console.log("Даем скидку в 5%");
-    break;
-  case fullPrice <= 14999 && fullPrice >= 0:
-    console.log("Скидка не предусмотрена");
-    break;
-  default:
-    console.log("Что-то пошло не так!");
-}
+function getFullPrice(a, b) {
+  return a + b;
+};
+const fullPrice = getFullPrice(screenPrice, allServicePrices);
 
-console.log(title);
-console.log(screens);
-console.log(parseFloat(screenPrice));
-console.log(!!adaptive);
-console.log(service1);
-console.log(parseFloat(servicePrice1));
-console.log(service2);
-console.log(parseFloat(servicePrice2));
+const getTitle = function (item) {
+  return item.trim().slice(0, 1).toUpperCase() + item.trim().slice(1).toLowerCase();
+};
 
-console.log(fullPrice);
-console.log(Math.ceil(servicePercentPrice));
+
+const getServicePercentPrices = function (a, b) {
+  return a - b;
+};
+const servicePercentPrice = getServicePercentPrices(fullPrice, (fullPrice * (rollBack / 100)));
+
+const showTypeOf = function (variable) {
+  console.log(variable, typeof variable);
+};
+
+const getRollbackMassege = function (price) {
+  if (price >= 30000) {
+    return "Даем скидку в 10%";
+  } else if (price <= 29999 && price >= 15000) {
+    return "Даем скидку в 5%";
+  } else if (price <= 14999 && price >= 0) {
+    return "Скидка не предусмотрена";
+  } else {
+    return "Что-то пошло не так!";
+  }
+};
+
+showTypeOf(title);
+showTypeOf(screenPrice);
+showTypeOf(adaptive);
+
+console.log(getTitle(title));
+console.log(getRollbackMassege(fullPrice));
+console.log(screens.split(' '));
+console.log(servicePercentPrice);
+
