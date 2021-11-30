@@ -15,8 +15,8 @@ const servicePrice1 = +prompt("Сколько это будет стоить?");
 const service2 = prompt("Какой дополнительный тип услуги нужен?");
 const servicePrice2 = +prompt("Сколько это будет стоить?");
 
-let fullPrice = screenPrice + servicePrice1 + servicePrice2;
-let servicePercentPrice = fullPrice - fullPrice * 0.15;
+const fullPrice = screenPrice + servicePrice1 + servicePrice2;
+const servicePercentPrice = fullPrice - 2000;
 
 
 console.log(title);
