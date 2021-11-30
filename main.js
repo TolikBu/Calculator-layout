@@ -14,22 +14,11 @@ const service1 = prompt("Какой дополнительный тип услу
 const servicePrice1 = +prompt("Сколько это будет стоить?");
 const service2 = prompt("Какой дополнительный тип услуги нужен?");
 const servicePrice2 = +prompt("Сколько это будет стоить?");
-
+const rollBack = 10;
 const fullPrice = screenPrice + servicePrice1 + servicePrice2;
-const servicePercentPrice = fullPrice - 2000;
+const servicePercentPrice = fullPrice - (fullPrice * (rollBack / 100));
 
-
-console.log(title);
-console.log(screens);
-console.log(parseFloat(screenPrice));
-console.log(!!adaptive);
-console.log(service1);
-console.log(parseFloat(servicePrice1));
-console.log(service2);
-console.log(parseFloat(servicePrice2));
-
-console.log(fullPrice);
-console.log(Math.ceil(servicePercentPrice));
+const showTypeOf = 
 
 switch (true) {
   case fullPrice >= 30000:
@@ -43,4 +32,16 @@ switch (true) {
     break;
   default:
     console.log("Что-то пошло не так!");
-};
+}
+
+console.log(title);
+console.log(screens);
+console.log(parseFloat(screenPrice));
+console.log(!!adaptive);
+console.log(service1);
+console.log(parseFloat(servicePrice1));
+console.log(service2);
+console.log(parseFloat(servicePrice2));
+
+console.log(fullPrice);
+console.log(Math.ceil(servicePercentPrice));
