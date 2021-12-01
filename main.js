@@ -17,10 +17,10 @@ const isNumber = function (num) {
 
 const asking = function () {
   title = prompt("Как называется ваш проект?", "Калькулятор");
-  screens = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
+  screens = prompt("Какие типы экранов нужно разработать?", "Например Простые, Сложные, Интерактивные");
 
   do {
-    screenPrice = prompt("Сколько будет стоить данная работа?", "12000");
+    screenPrice = prompt("Сколько будет стоить данная работа?", "Например: 12000");
   } while (!isNumber(screenPrice));
 
   screenPrice = +screenPrice;
@@ -33,16 +33,15 @@ const getAllServicePrices = function () {
 
   for (let i = 0; i < 2; i++) {
     if (i === 0) {
-      service1 = prompt("Какой дополнительный тип услуги нужен?", "n");
+      service1 = prompt("Какой дополнительный тип услуги нужен?");
     } else if (i === 1) {
-      service2 = prompt("Какой дополнительный тип услуги нужен?", "n");
+      service2 = prompt("Какой дополнительный тип услуги нужен?");
     }
-
     
     do {
-      sum = +prompt("Сколько это будет стоить?");
+      sum += +prompt("Сколько это будет стоить?");
     } while (!isNumber(sum));
-    console.log(sum);
+    
   }
   return sum;
   
@@ -54,7 +53,6 @@ function getFullPrice() {
 
 const getTitle = function (item) {
   return item.trim().slice(0, 1).toUpperCase() + item.trim().slice(1).toLowerCase();
-  // return title.trim()[0].toUpperCase() + title.trim().substr(1).toLowerCase();
 };
 
 const getServicePercentPrices = function () {
@@ -87,9 +85,7 @@ showTypeOf(title);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
 
-console.log(typeof allServicePrices);
-console.log(typeof fullPrice);
-
+console.log(getTitle(title));
 console.log(getRollbackMassege(fullPrice));
 console.log(screens.split(","));
 console.log(servicePercentPrice);
