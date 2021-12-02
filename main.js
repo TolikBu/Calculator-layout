@@ -38,13 +38,16 @@ const getAllServicePrices = function () {
       service2 = prompt("Какой дополнительный тип услуги нужен?");
     }
     
-    do {
-      sum += +prompt("Сколько это будет стоить?");
-    } while (!isNumber(sum));
-    
+    sum += ( function () {
+      let accept;
+      do {
+        accept = prompt("Сколько это будет стоить?");
+      } while (!isNumber(accept));
+      return +accept;}
+      ) (); 
   }
   return sum;
-  
+
 };
 
 function getFullPrice() {
