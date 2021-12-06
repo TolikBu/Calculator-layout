@@ -24,22 +24,34 @@ const appData = {
   },
   asking: function () {
     appData.title = prompt("Как называется ваш проект?", "Калькулятор");
+    if (appData.title === "" || !isNaN(appData.title)) {
+      alert("Было введено число, введите название");
+      return this.asking();
+    }
 
     appData.screenPrice = +appData.screenPrice;
 
     for (let i = 0; i < 2; i++) {
-      let name = prompt("Какие типы экранов нужно разработать?");
-      let price = 0;
+      let name;
+      do {
+        name = prompt("Какие типы экранов нужно разработать?");
+      } while (appData.isNumber(name));
 
+      let price = 0;
       do {
         price = prompt("Сколько будет стоить данная работа?");
       } while (!appData.isNumber(price));
+
 
       appData.screens.push({id: i, name: name, price: price});
     }
 
     for (let i = 0; i < 2; i++) {
-      let name = prompt("Какой дополнительный тип услуги нужен?");
+      let name;
+      do {
+        name = prompt("Какой дополнительный тип услуги нужен?");
+      } while (appData.isNumber(name));
+      
       let price = 0;
 
       do {
