@@ -23,11 +23,9 @@ const appData = {
     return !isNaN(parseFloat(num)) && isFinite(num);
   },
   asking: function () {
-    appData.title = prompt("Как называется ваш проект?", "Калькулятор");
-    if (appData.title === "" || !isNaN(appData.title)) {
-      alert("Было введено число, введите название");
-      return this.asking();
-    }
+    do  {
+      appData.title = prompt("Как называется ваш проект?", "Калькулятор");
+    } while (appData.isNumber(appData.title));
 
     appData.screenPrice = +appData.screenPrice;
 
@@ -65,9 +63,15 @@ const appData = {
   },
 
   addPrices: function() {
+    // let sum = appData.screens((appData.screens) => + appData.screens[key]);
+
+
     for (let screen of appData.screens) {
       appData.screenPrice += +screen.price;
     }
+
+
+
     for (let key in appData.services) {
       appData.allServicePrices += appData.services[key];
     }
