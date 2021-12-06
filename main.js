@@ -24,7 +24,6 @@ const appData = {
   },
   asking: function () {
     appData.title = prompt("Как называется ваш проект?", "Калькулятор");
-  
 
     appData.screenPrice = +appData.screenPrice;
 
