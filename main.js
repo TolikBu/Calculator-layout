@@ -30,7 +30,7 @@ while (totalInput.length) {
 //получаем блоки screen
 screenDiv.forEach(function (item) {
   console.log(item);
-})
+});
 
 
 
