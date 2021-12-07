@@ -1,4 +1,38 @@
 "use strict";
+const title = document.getElementsByTagName("h1");
+const btn = document.getElementsByClassName("handler_btn");
+const add = document.querySelector(".screen-btn");
+const percent = document.querySelectorAll(".percent");
+const number = document.querySelectorAll(".number");
+const inputRange = document.querySelector(".rollback");
+const totalInput = document.getElementsByClassName("total-input");
+let screenDiv = document.querySelectorAll(".screen");
+
+console.log(title[0]);
+console.log(btn[0]);
+console.log(btn[1]);
+console.log(add);
+percent.forEach(function (item) {
+  console.log(item);
+});
+number.forEach(function (item) {
+  console.log(item);
+});
+console.log(inputRange.childNodes[1].childNodes[1]);
+console.log(inputRange.childNodes[1].childNodes[3]);
+
+//получаем input справа 
+while (totalInput.length) {
+  let event = totalInput[0];
+  event.classList.remove("total-input");
+  console.log(event);
+}
+//получаем блоки screen
+screenDiv.forEach(function (item) {
+  console.log(item);
+})
+
+
 
 const appData = {
   title: "",
@@ -104,6 +138,6 @@ const appData = {
   },
 };
 
-appData.start();
+// appData.start();
 
 
