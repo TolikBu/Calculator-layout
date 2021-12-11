@@ -1,13 +1,15 @@
 "use strict";
+
 const title = document.getElementsByTagName("h1")[0];
 const btn = document.getElementsByClassName("handler_btn")[0];
 const buttonPlus = document.querySelector(".screen-btn");
 const percent = document.querySelectorAll(".other-items.percent");
 const number = document.querySelectorAll(".other-items.number");
-const inputRange = document.querySelector(".rollback");
-const totalInput = document.getElementsByClassName("total-input");
+const inputRange = document.querySelector(".rollback input");
+const totalInput = document.querySelector(".rollback .range-value");
 const startBtn = document.getElementsByClassName("handler_btn")[0];
 const resetBtn = document.getElementsByClassName("handler_btn")[1];
+let screens = document.querySelectorAll(".screen");
 
 const total = document.getElementsByClassName("total-input")[0];
 const totalCount = document.getElementsByClassName("total-input")[1];
@@ -15,11 +17,15 @@ const totalCountOther = document.getElementsByClassName("total-input")[2];
 const fullTotalCount = document.getElementsByClassName("total-input")[3];
 const totalCountRollback = document.getElementsByClassName("total-input")[4];
 
-let screens = document.querySelectorAll(".screen");
+const checkbox = document.querySelectorAll(".custom-checkbox");
+let selectCheck = document.querySelector(".main-controls__select");
+let inputCheck = document.querySelector(".main-controls__input");
+// let newArr = [...checkbox];
 
 const appData = {
   title: "",
   screens: [],
+  count: 0,
   screenPrice: 0,
   adaptive: true,
   rollback: 10,
@@ -29,11 +35,33 @@ const appData = {
   servicePercentPrice: 0,
   servicesPercent: {},
   servicesNumber: {},
+  inputRange: "",
+  checkbox: false,
+  totalInput: " ",
   init: function () {
     appData.addTitle();
-
+    appData.checkValue();
     startBtn.addEventListener("click", appData.start);
     buttonPlus.addEventListener("click", appData.addScreenBlock);
+    inputRange.addEventListener("input", appData.rollBackMediator);
+    inputRange.addEventListener("change", appData.rollBackMediator);
+
+  },
+
+  rollBackMediator: function () {
+    
+    totalInput.textContent = inputRange.value + "%";
+    // rollback.textContent = inputRange.value;
+    // console.log(rollback.textContent);
+  },
+
+  checkValue: function () {
+    checkbox.forEach(() => {
+      if (checkbox.checked === false) {
+        btn.setAttribute("disabled", "disabled");
+      } 
+    });
+    console.log("работате функция чекед");
   },
 
   addTitle: function () {
@@ -45,17 +73,17 @@ const appData = {
     appData.addServices();
 
     appData.addPrices();
-    // appData.getServicePercentPrices();
-    
+
     // appData.logger();
     console.log(appData);
     appData.showResult();
   },
 
-  showResult: function () {  
+  showResult: function () {
     total.value = appData.screenPrice;
     totalCountOther.value = appData.servicePricesNumber + appData.servicePricesPercent;
     fullTotalCount.value = appData.fullPrice;
+    totalCountRollback.value = appData.servicePercentPrice;
   },
 
   addScreens: function () {
@@ -70,6 +98,8 @@ const appData = {
         price: +select.value * +input.value,
       });
     });
+    console.log(appData.screens);
+    
   },
 
   addServices: function () {
@@ -91,12 +121,11 @@ const appData = {
         appData.servicesNumber[label.textContent] = +input.value;
       }
     });
-
+   
   },
 
   addScreenBlock: function () {
     const cloneScreen = screens[0].cloneNode(true);
-
     screens[screens.length - 1].after(cloneScreen);
   },
 
@@ -113,23 +142,10 @@ const appData = {
     }
 
     appData.fullPrice = +appData.screenPrice + appData.servicePricesNumber + appData.servicePricesPercent;
-  },
 
-  getServicePercentPrices: function () {
     appData.servicePercentPrice = appData.fullPrice - appData.fullPrice * (appData.rollback / 100);
   },
 
-  getRollbackMassege: function (price) {
-    if (price >= 30000) {
-      return "Даем скидку в 10%";
-    } else if (price <= 29999 && price >= 15000) {
-      return "Даем скидку в 5%";
-    } else if (price <= 14999 && price >= 0) {
-      return "Скидка не предусмотрена";
-    } else {
-      return "Что-то пошло не так!";
-    }
-  },
 
   logger: function () {
     console.log(appData.fullPrice);
@@ -139,3 +155,4 @@ const appData = {
 };
 
 appData.init();
+
