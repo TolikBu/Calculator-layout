@@ -21,7 +21,7 @@ const checkbox = document.querySelectorAll(".custom-checkbox");
 let selectCheck = document.querySelector(".main-controls__select select");
 let inputCheck = document.querySelectorAll(".screen input[type=text]");
 const newArr = [...checkbox, selectCheck, inputCheck];
-
+let sum = 0;
 
 const appData = {
   title: "",
@@ -38,6 +38,7 @@ const appData = {
   inputRange: "",
   checkbox: false,
   totalInput: "",
+  count: 0,
   init: function () {
     appData.addTitle();
 
@@ -74,7 +75,6 @@ const appData = {
   start: function () {
     appData.addScreens();
     appData.addServices();
-    appData.count();
 
     appData.addPrices();
 
@@ -105,15 +105,9 @@ const appData = {
     });
   },
 
-  count: function () { 
-  let inputCheck = document.querySelectorAll(".screen input[type=text]");
-  let sum = 0;
-    inputCheck.forEach(function (item) { 
-      sum += +item.value;
-
-    });
-    console.log(sum);
-  },
+  // count: function () { 
+  
+  // },
 
   addServices: function () {
     percent.forEach(function (item) {
@@ -156,6 +150,14 @@ const appData = {
     appData.fullPrice = +appData.screenPrice + appData.servicePricesNumber + appData.servicePricesPercent;
 
     appData.servicePercentPrice = appData.fullPrice - appData.fullPrice * (appData.rollback / 100); 
+
+    let inputCheck = document.querySelectorAll(".screen input[type=text]");
+    
+    inputCheck.forEach(function (item) { 
+      appData.count += +item.value;
+    });
+    console.log(appData.count);
+    
 
   },
 
