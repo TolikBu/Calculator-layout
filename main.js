@@ -28,7 +28,7 @@ const appData = {
   screens: [],
   screenPrice: 0,
   adaptive: true,
-  rollback: 10,
+  rollback: 0,
   servicePricesPercent: 0,
   servicePricesNumber: 0,
   fullPrice: 0,
@@ -54,8 +54,8 @@ const appData = {
 
   rollBackMediator: function () {
     totalInput.textContent = inputRange.value + "%";
-    // rollback.textContent = inputRange.value;
-    // console.log(rollback.textContent);
+    appData.rollback = +inputRange.value;
+    // console.log(appData.rollback);
   },
   isError: false,
   checkValue: function () {
@@ -105,9 +105,6 @@ const appData = {
     });
   },
 
-  // count: function () { 
-  
-  // },
 
   addServices: function () {
     percent.forEach(function (item) {
