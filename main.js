@@ -95,9 +95,10 @@ const appData = {
     total.value = this.screenPrice;
     totalCountOther.value = this.servicePricesNumber + this.servicePricesPercent;
     fullTotalCount.value = this.fullPrice;
-    totalCountRollback.value = this.servicePercentPrice;
+    totalCountRollback.value = Math.round(this.servicePercentPrice);
     totalCount.value = this.count;
   },
+
 
   addScreens: function () {
     screens = document.querySelectorAll(".screen");
@@ -161,8 +162,6 @@ const appData = {
       buttonPlus.disabled = false;
       
 
-      console.log(select);
-      console.log(input);
     });
   },
 
