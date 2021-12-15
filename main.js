@@ -118,6 +118,7 @@ const appData = {
   disabledFunc: function () {
     startBtn.style.display = "none";
     resetBtn.style.display = "block";
+    buttonPlus.setAttribute("disabled", "true");
 
     screens = document.querySelectorAll(".screen");
 
@@ -134,6 +135,7 @@ const appData = {
     this.changeBtn();
     this.deletScreens();
     this.resultReset();
+    this.addScreens();
   },
 
   changeBtn: function () {
@@ -147,14 +149,16 @@ const appData = {
     screens.forEach((screen, index) => {
       const select = screen.querySelector("select");
       const input = screen.querySelector("input");
+      select.value = "";
       input.value = "";
 
       if (index !== 0) {
         screen.remove();
       }
 
-      select.setAttribute("disabled", "false");
-      input.setAttribute("disabled", "false");
+      select.disabled = false;
+      input.disabled = false;
+      buttonPlus.disabled = false;
       
 
       console.log(select);
