@@ -22,8 +22,6 @@ let selectCheck = document.querySelectorAll(".main-controls__select select");
 let inputCheck = document.querySelectorAll(".screen input[type=text]");
 let cms = document.getElementById("cms-open");
 let cmsHidden = document.querySelector(".hidden-cms-variants");
-let other = document.querySelector("cms .main-controls__input");
-console.log(other);
 
 
 const appData = {
@@ -46,6 +44,7 @@ const appData = {
     this.addTitle();
 
     cms.addEventListener("click", this.cms);
+    this.otherCms();
 
     startBtn.addEventListener("click", this.checkValue.bind(this));
     buttonPlus.addEventListener("click", this.addScreenBlock);
@@ -228,16 +227,17 @@ const appData = {
   cms: function () {
     if (cms.checked === true) {
       cmsHidden.style.display = "flex";
-      console.log("work");
     } else {
       cmsHidden.style.display = "none";
     }
   },
-  otherCms: function () {
-    if () {
 
-    }
-  }
+  otherCms: function () {
+    let wordPress = document.querySelector("id=[cms-select]");
+    console.log(wordPress);
+    if (wordPress.textContent === "WordPress") {
+    } 
+  },
 
 
   logger: function () {
