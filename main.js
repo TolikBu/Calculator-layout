@@ -20,8 +20,19 @@ const totalCountRollback = document.getElementsByClassName("total-input")[4];
 const checkbox = document.querySelectorAll(".custom-checkbox");
 let selectCheck = document.querySelectorAll(".main-controls__select select");
 let inputCheck = document.querySelectorAll(".screen input[type=text]");
+let allCeckbox = document.querySelectorAll("input[type=checkbox]");
 let cms = document.getElementById("cms-open");
 let cmsHidden = document.querySelector(".hidden-cms-variants");
+let cmsValue = cmsHidden.querySelector("select");
+let cmsPercent = cmsHidden.querySelector(".main-controls__input");
+let cmsOption = cmsHidden.querySelectorAll("option");
+let inputPercent = cmsHidden.querySelector("input[type=text]");
+console.log(cmsHidden);
+console.log(cmsValue);
+console.log(cmsPercent);
+console.log(cmsOption);
+console.log(inputPercent.value);
+
 
 
 const appData = {
@@ -33,6 +44,7 @@ const appData = {
   servicePricesPercent: 0,
   servicePricesNumber: 0,
   fullPrice: 0,
+  inputPercent: 0,
   servicePercentPrice: 0,
   servicesPercent: {},
   servicesNumber: {},
@@ -44,7 +56,7 @@ const appData = {
     this.addTitle();
 
     cms.addEventListener("click", this.cms);
-    this.otherCms();
+    this.cmsPrice();
 
     startBtn.addEventListener("click", this.checkValue.bind(this));
     buttonPlus.addEventListener("click", this.addScreenBlock);
@@ -92,6 +104,7 @@ const appData = {
 
     console.log(this);
     this.showResult();
+
     this.disabledFunc();
     // this.logger();
   },
@@ -136,6 +149,24 @@ const appData = {
     });
   },
 
+  cms: function () {
+    if (cms.checked === true) {
+      cmsHidden.style.display = "flex";
+    } else {
+      cmsHidden.style.display = "none";
+    }
+  },
+
+  cmsPrice: function () {
+    cmsValue.addEventListener("change", function (item) {
+      if (item.target.value === "other") {
+        cmsPercent.style.display = "flex";
+      } else {
+        cmsPercent.style.display = "none";
+      }
+    });
+  },
+
   reset: function () {
     this.changeBtn();
     this.deletScreens();
@@ -165,6 +196,12 @@ const appData = {
       input.disabled = false;
       buttonPlus.disabled = false;
     });
+
+   allCeckbox.forEach(function (i) {
+     i.checked = false;
+   });
+
+   cmsHidden.style.display = "none";
   },
 
   resultReset: function () {
@@ -173,6 +210,9 @@ const appData = {
     fullTotalCount.value = "0";
     totalCountRollback.value = "0";
     totalCount.value = "0";
+    inputRange.value = "0";
+    totalInput.textContent = "0%";
+    cmsValue.value = "";
   },
 
   addServices: function () {
@@ -212,8 +252,10 @@ const appData = {
     for (let key in this.servicesPercent) {
       this.servicePricesPercent += this.screenPrice * (this.servicesPercent[key] / 100);
     }
-
+    
+    
     this.fullPrice = +this.screenPrice + this.servicePricesNumber + this.servicePricesPercent;
+
 
     this.servicePercentPrice = this.fullPrice - this.fullPrice * (this.rollback / 100);
 
@@ -222,21 +264,6 @@ const appData = {
     inputCheck.forEach((item) => {
       this.count += +item.value;
     });
-  },
-
-  cms: function () {
-    if (cms.checked === true) {
-      cmsHidden.style.display = "flex";
-    } else {
-      cmsHidden.style.display = "none";
-    }
-  },
-
-  otherCms: function () {
-    let wordPress = document.querySelector("id=[cms-select]");
-    console.log(wordPress);
-    if (wordPress.textContent === "WordPress") {
-    } 
   },
 
 
