@@ -33,8 +33,6 @@ console.log(cmsPercent);
 console.log(cmsOption);
 console.log(inputPercent.value);
 
-
-
 const appData = {
   title: "",
   screens: [],
@@ -45,6 +43,8 @@ const appData = {
   servicePricesNumber: 0,
   fullPrice: 0,
   inputPercent: 0,
+  cmsOption: 50,
+  cmsPercent: 0,
   servicePercentPrice: 0,
   servicesPercent: {},
   servicesNumber: {},
@@ -197,11 +197,11 @@ const appData = {
       buttonPlus.disabled = false;
     });
 
-   allCeckbox.forEach(function (i) {
-     i.checked = false;
-   });
+    allCeckbox.forEach(function (i) {
+      i.checked = false;
+    });
 
-   cmsHidden.style.display = "none";
+    cmsHidden.style.display = "none";
   },
 
   resultReset: function () {
@@ -252,8 +252,7 @@ const appData = {
     for (let key in this.servicesPercent) {
       this.servicePricesPercent += this.screenPrice * (this.servicesPercent[key] / 100);
     }
-    
-    
+
     this.fullPrice = +this.screenPrice + this.servicePricesNumber + this.servicePricesPercent;
 
 
@@ -265,7 +264,6 @@ const appData = {
       this.count += +item.value;
     });
   },
-
 
   logger: function () {
     console.log(this.fullPrice);
